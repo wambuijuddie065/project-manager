@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ADMIN|DASHBOARD</title>
+    <link rel="stylesheet" href="AdminDashboard.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="profile">
+                <!-- <ion-icon id="profileIcon" name="person-circle-outline"></ion-icon> -->
+                <p id="profileName">HELLO  JUDDIE</p>
+              
+            </div>
+            
+              
+              <button id="logoutBtn" type="button">LOGOUT</button>
+            
+           
+          </header>
+        <div class="topContainer">
+            <button id="newProjectBtn">NEW PROJECT</button>
+            <button id="closeFormBtn" type="button">CLOSE</button>
+            <form action="" id="projectForm" >
+                <input id="projectTitle" required type="text" placeholder="Title" />
+                <input id="projectDescription" required type="text" placeholder="Description" />
+                <input id="projectDueDate" required type="date" placeholder="Due on" />
+                <button id="addProjectBtn" type="submit">ADD PROJECT</button>
+                
+                
+
+            </form>
+        </div>
+        <div class="middleContainer">
+            <div class="middleOne">
+                <button id="allProjects" type="button">PROJECTS</button>
+                <button id="assignedProjects"  type="button">ASSIGNED</button>
+                <button id="completeProjects"  type="button">COMPLETE</button>
+            </div>
+            
+        
+            
+        </div>
+        <div class="bottomContainer">
+            <div class="projectContainer">
+                <!-- <div class="aProject">
+                    <div class="title">jsdnkl</div>
+                    <div class="desc">skajdk</div>
+                    <div class="due">smda</div>
+                    
+                    <button id="deleteProject">DELETE</button>
+                    <button id="assignProject">ASSIGN</button>
+
+                    
+                </div>
+                <div class="aProject">
+                    <div class="title">jsdnkl</div>
+                    <div class="desc">skajdk</div>
+                    <div class="due">smda</div>
+                    
+                        <button id="deleteProject">DELETE</button>
+                        <button id="assignProject">ASSIGN</button>
+
+                   
+                </div>
+                <div class="aProject">
+                    <div class="title">jsdnkl</div>
+                    <div class="desc">skajdk</div>
+                    <div class="due">smda</div>
+                   
+                        <button id="deleteProject">DELETE</button>
+                        <button id="assignProject">ASSIGN</button>
+
+                   
+                </div> -->
+            </div>
+        </div>
+    </div>
+
+
+
+    <!-- <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+   <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script> -->
+    <script type="module" src="../dist/admin.js"></script>
+</body>

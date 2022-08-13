@@ -1,0 +1,118 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap');
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+body{
+    background-color: whitesmoke;
+}
+.mainContainer{
+    margin: 50px auto;
+    height: 600px;
+    width: 900px;
+    display: flex;
+   
+
+}
+.leftContainer , .rightContainer{
+    width:50%;
+    height: 100%;
+    position: relative;
+  
+    
+}
+
+.projImg {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    
+
+}
+.rightContainer{
+   background-color: white;
+   padding: 30px;
+   overflow: hidden;
+  
+    
+}
+.welcome{
+    text-align: center;
+    margin-bottom: 15px;
+}
+.loginContainer{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-self: center;
+    margin: 40px 10px;
+    
+}
+#loginForm, #registerForm{
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+#loginEmail, #loginPassword, #registerName, #registerEmail,#registerPassword{
+    height: 50px;
+    padding: 20px;
+    font-size: 15px;
+    border-top: 0;
+    border-left: 0;
+    border-right: 0;
+    outline: none;
+    
+
+}
+#loginBtn,#registerBtn{
+    height: 60px;
+    border-radius: 30px;
+    font-size: 20px;
+    font-weight: bold;
+    color: white;
+    background-color:  purple;
+    border: none;
+    outline: none;
+    margin-top: 50px;
+  
+
+}
+
+
+#loginBtn:hover,#registerBtn:hover{
+    cursor: pointer;
+    background-color: #670DA8;
+
+}
+.forgot{
+    text-decoration: none;
+    color: black;
+    text-align: end;
+    margin: 10px;
+}
+.newMember, .member{
+    text-align: center;
+    margin-top: 50px;
+    
+}
+.newMember a, .member a{
+    color: purple;
+    text-decoration: none;
+}
+.newMember a:hover, .member a:hover{
+    color:magenta;
+
+}
+.registerContainer{
+    display: none;
+    
+
+}
+/* .loginContainer{
+    display:none
+
+} */

@@ -1,0 +1,101 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap');
+*{
+    font-family: 'Poppins', sans-serif;
+}
+
+.container{
+    display: flex;
+    flex-direction: column;
+   
+    background-color: #F3E5F5;
+    border-radius: 20px;
+    margin: 40px auto;
+    height: 650px;
+    width: 90rem;
+}
+header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 50px;
+    
+    padding: 10px 30px;
+    
+}
+.search{
+    display: flex;
+    align-items: center;
+    
+    height: 30px;
+    width: 300px;
+    color: grey;
+    padding: 5px;
+    
+}
+.searchIcon{
+    font-size: 25px;
+
+}
+#searchInput{
+    outline: none;
+    border: none;
+    height: 30px;
+    margin-left: 10px;
+    font-size: 15px;
+}
+.profile{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    
+}
+
+#profileName{
+    font-size: 20px;
+    font-style: italic;
+    font-weight: bold;
+
+}
+#logoutBtn{
+    height: 50px;
+    width: 130px;
+    color: white;
+    font-size: 15px;
+    font-weight: bold;
+    outline: none;
+    border: none;
+    border-radius: 30px;
+    background-color: #9C27B0;
+    margin-left: 10px;
+}
+#logoutBtn:hover{
+    background-color: purple;
+}
+#projectCount{
+    text-align: center;
+    font-size: 15px;
+}
+.content{
+    display: flex;
+    align-items: center;
+    gap: 50px;
+    font-size: 20px;
+    
+}
+#myAssignedProjects,#myCompleteProjects{
+    width: 200px;
+    outline: none;
+    border: none;
+    background-color: #F3E5F5;
+    font-size: 15px;
+    font-weight:bold;
+    
+    
+    
+}
+#myAssignedProjects:hover,#myCompleteProjects:hover{
+    text-decoration: underline;
+    text-decoration-color: #C05DC8;
+    text-decoration-thickness: 2px;
+    cursor: pointer;
+}

@@ -1,0 +1,184 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap');
+*{
+    padding: 0;
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+}
+/* body{
+    background-color: whitesmoke;
+} */
+.container{
+    display: flex;
+    flex-direction: column;
+   
+    background-color: #F3E5F5;
+    /* border: solid 2px #E1BEE7 ; */
+    border-radius: 20px;
+    margin: 40px auto;
+    height: 650px;
+    width: 90rem;
+}
+header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 50px;
+    /* background-color: #C05DC8; */
+    padding: 10px 30px;
+    
+}
+.search{
+    display: flex;
+    align-items: center;
+    
+    height: 30px;
+    width: 300px;
+    color: grey;
+    padding: 5px;
+    
+}
+.searchIcon{
+    font-size: 25px;
+
+}
+#searchInput{
+    outline: none;
+    border: none;
+    height: 30px;
+    margin-left: 10px;
+    font-size: 15px;
+}
+.profile{
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    
+}
+
+#profileName{
+    font-size: 20px;
+    font-weight: bold;
+    font-style: italic;
+
+}
+#logoutBtn{
+    height: 50px;
+    width: 130px;
+    color: white;
+    font-size: 15px;
+    font-weight: bold;
+    outline: none;
+    border: none;
+    border-radius: 30px;
+    background-color: #9C27B0;
+}
+#newProjectBtn,#closeFormBtn,#addProjectBtn{
+    height: 50px;
+    width: 180px;
+    color: white;
+    font-size: 15px;
+    font-weight: bold;
+    outline: none;
+    border: none;
+    border-radius: 30px;
+}
+#newProjectBtn{
+    background-color: #9C27B0;
+
+}
+#addProjectBtn{
+    background-color: black;
+    margin-left: 30px;
+}
+#closeFormBtn{
+    display: none;
+    background-color: purple;
+}
+
+
+#newProjectBtn:hover,#closeFormBtn:hover,#deleteProject:hover,#assignProject:hover,#logoutBtn:hover{
+    cursor: pointer;
+    background-color: purple;
+}
+#addProjectBtn:hover{
+    background-color: purple;
+}
+.topContainer{
+    display: flex;
+    gap: 25px;
+    margin: 20px;
+}
+#projectTitle,#projectDescription,#projectDueDate{
+    border-top:0;
+    outline: none;
+    border-left:0;
+    border-right: 0;
+    margin: 30px;
+    width: 200px;
+    background-color: #F3E5F5;
+}
+#projectForm{
+    display: none;
+}
+.middleContainer{
+    display: flex;
+    flex-direction: column;
+}
+.middleOne{
+    display: flex;
+    align-items: center;
+    gap: 50px;
+    font-size: 20px;
+  
+}
+#allProjects,
+#assignedProjects,
+#completeProjects{
+    width: 200px;
+    outline: none;
+    border: none;
+    background-color: #F3E5F5;
+    font-size: 15px;
+    font-weight:bold;
+}
+#allProjects:hover,
+#assignedProjects:hover,
+#completeProjects:hover
+{
+    text-decoration: underline;
+    text-decoration-color: #C05DC8;
+    text-decoration-thickness: 2px;
+    cursor: pointer;
+}
+.projectContainer{
+    /* display: grid;
+    grid-template-columns: repeat(autofill,450px); */
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin: 20px;
+}
+
+.aProject{
+    display: flex;
+    flex-direction: column;
+    border: solid 2px #E1BEE7 ;
+    padding: 10px;
+    align-items: center;
+    width: 250px;
+    height: 200px;
+    gap: 10px;
+    border-radius: 20px;
+}
+#deleteProject,#assignProject{
+    height: 50px;
+    width: 180px;
+    color: white;
+    font-size: 15px;
+    font-weight: bold;
+    outline: none;
+    border: none;
+    border-radius: 30px;
+    background-color: #9C27B0;
+
+}

@@ -1,0 +1,71 @@
+
+POST http://localhost:5000/users/register
+Content-Type: application/json
+
+
+{
+    "name":"sia",
+    "email":"sia@gmail.com",
+    "password":"12345678"
+}
+
+###
+
+POST http://localhost:5000/users/login
+Content-Type: application/json
+
+
+{
+    
+    "email":"judy@gmail.com",
+    "password":"12345678"
+}
+
+
+###
+
+GET http://localhost:5000/users/dashboard
+token:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImNkZDc2OTc2LWU0OTYtNGI4OS05NjY2LThkNzMxM2IzMTYzZSIsIm5hbWUiOiJzaWEiLCJlbWFpbCI6InNpYUBnbWFpbC5jb20iLCJyb2xlIjoiVXNlciIsImlzYXNzaWduZWQiOiIwIiwicHJvamVjdF9pZCI6IjAiLCJpYXQiOjE2NjAxMzgwODgsImV4cCI6MTY2MDEzODE0OH0.eTVCHHmQd8rL0ykJclQ85hWv1qYkbZa3ehjDKhguIgI
+
+
+###
+GET http://localhost:5000/users/check
+token:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjBhNWMyMzQ5LTViY2MtNGEyZC04YjViLWRkNThmMWZmYTE2ZSIsIm5hbWUiOiJKdWR5IFdhbWJ1aSIsImVtYWlsIjoianVkeUBnbWFpbC5jb20iLCJyb2xlIjoiQWRtaW4iLCJpc2Fzc2lnbmVkIjoiMCIsInByb2plY3RfaWQiOiIwIiwiaWF0IjoxNjYwMTM4NDYyLCJleHAiOjE2NjAxNDIwNjJ9.4DSWVZVF9mi1zFd8YM6ybS6gAbNLTGcI-IViOB91U0A
+
+###
+
+POST http://localhost:5000/projects/add
+Content-Type: application/json
+
+
+{
+    "project_name":"CSS",
+    "project_description":"Flexbox CSS",
+    "due_date":"2022-08-21"
+}
+
+###
+
+
+GET http://localhost:5000/projects
+
+###
+
+GET http://localhost:5000/projects/9f9d811e-dd92-4c5b-a93f-b8ca6bfa3786
+###
+
+PATCH http://localhost:5000/localhost:5000/projects/9f9d811e-dd92-4c5b-a93f-b8ca6bfa3786
+Content-Type: application/json
+
+{
+    "project_name":"sql2",
+    "project_description":"updated sql",
+    "due_date":"2022-08-21",
+    "is_complete":"1",
+    "is_assigned":"1"
+}
+
+###
+
+DELETE http://localhost:5000/projects/9f9d811e-dd92-4c5b-a93f-b8ca6bfa3786
+

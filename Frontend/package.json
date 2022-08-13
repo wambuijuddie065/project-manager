@@ -1,0 +1,21 @@
+{
+  "dependencies": {
+    "concurrently": "^7.3.0",
+    "nodemon": "^2.0.19",
+    "uuid": "^8.3.2"
+  },
+  "name": "frontend",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "tsc -w"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "@types/uuid": "^8.3.4"
+  }
+}

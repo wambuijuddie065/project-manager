@@ -1,0 +1,6 @@
+CREATE PROCEDURE getUsers
+AS
+BEGIN
+SELECT * FROM UsersTable
+WHERE role='user'
+END
