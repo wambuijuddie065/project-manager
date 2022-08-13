@@ -1,3 +1,4 @@
+import { Projects } from "./admin"
 
 
 const loginEmail=document.getElementById("loginEmail") as HTMLInputElement
@@ -56,7 +57,7 @@ class Users{
         })
         prom.then(data=>{
             data.token?localStorage.setItem('token',data.token):''
-            // console.log(data);
+            console.log(data);
             this.redirect()
             
         }).catch(err=>console.log(err))
@@ -98,6 +99,7 @@ class Users{
             localStorage.setItem('name',data.name)
             if(data.role==='Admin'){
                 location.href='AdminDashboard.html'
+                
             }else{
                    location.href='UserDashboard.html'
             }
@@ -107,8 +109,8 @@ class Users{
 }
 
 
-loginBtn.addEventListener('click',()=>{
-
+loginBtn.addEventListener('click',(e)=>{
+    e.preventDefault();
     const emailInput=loginEmail.value
     const passwordInput=loginPassword.value
 
@@ -119,6 +121,9 @@ loginBtn.addEventListener('click',()=>{
         
     }else{
         Users.getUser().loginUser(emailInput,passwordInput)
+
+        // console.log(emailInput,passwordInput);
+        
     }
 
 })

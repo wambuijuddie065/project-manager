@@ -9,3 +9,13 @@ export interface projectInterface{
         
    
 }
+
+
+export interface Project{
+        project_id:string
+        project_name:string
+        project_description:string
+        due_date:string
+        is_complete:string
+        isassigned:string
+}

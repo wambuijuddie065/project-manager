@@ -1,5 +1,5 @@
 import { projectInterface } from "./interfaces/interface"
-
+import { Project } from "./interfaces/interface"
 
 const projectForm=document.getElementById('projectForm') as HTMLFormElement
 const logoutBtn=document.getElementById('logoutBtn') as HTMLButtonElement
@@ -11,7 +11,7 @@ const projectDescription=document.getElementById('projectDescription') as HTMLIn
 const projectDueDate=document.getElementById('projectDueDate') as HTMLInputElement
 const projectContainer=document.querySelector('.projectContainer') as HTMLDivElement
 const profileName=document.getElementById('profileName') as HTMLParagraphElement
-
+const message= document.querySelector('.message') as HTMLParagraphElement
 
 
 
@@ -42,11 +42,13 @@ closeFormBtn.addEventListener('click',()=>{
 
 
 
-class Projects{
+ export class Projects{
     static getProject(){
         return new Projects()
     }
-    constructor(){}
+    constructor(){
+      this.displayProject()
+    }
     addProject(project_name:string,project_description:string,due_date:String){
         const prom=new Promise<{error?:string,message?:string}>((resolve,reject)=>{
             fetch('http://localhost:5000/projects/add',{
@@ -63,10 +65,59 @@ class Projects{
                 })
             }).then(res=>{resolve(res.json())}).catch(err=>(reject(err)))
         })
-        prom.then(data=>console.log(data)).catch(err=>console.log(err))
+        prom.then((data)=>{
+            // console.log(data);
+            data.message? message.textContent=data.message:''
+            data.error? message.textContent=data.error:''
+            setTimeout(()=>{  
+                message.style.display="none"
+             },3000)
+
+            this.displayProject()
+        }
+        
+        
+        ).catch(err=>console.log(err))
 
     }
+    displayProject(){
+        const prom=new Promise<Project[]>((resolve,reject)=>{
+            fetch('http://localhost:5000/projects',{
+                method:'GET',
+
+            }).then(res=>{resolve(res.json())}).catch(err=>(reject(err)))
+
+        })
+        prom.then((data)=>{
+        // console.log(data);
+        projectContainer.innerHTML=''
+ data.map((item) =>{
+            let html= `
+            <div class="aProject">
+            <div class="title">${item.project_name}</div>
+            <div class="desc">${item.project_description}</div>
+            <div class="due">${item.due_date}</div>
+            
+            <button id="deleteProject">DELETE</button>
+            <button id="assignProject">ASSIGN</button>
+
+            
+             </div>
+            `
+
+            projectContainer.insertAdjacentHTML('beforeend', html)
+
+        
+            })
+              
+
+        })
+    }
 }
+
+
+const p = new Projects()
+
 addProjectBtn.addEventListener('click',(e)=>{
     e.preventDefault()
     
