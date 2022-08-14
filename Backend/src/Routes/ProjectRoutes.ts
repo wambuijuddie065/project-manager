@@ -7,7 +7,7 @@ routerP.post('/add',insertProject)//insertProject
 routerP.post('/')//asignProject
 routerP.get('/:id',getProject)//getProject
 routerP.get('/',getProjects)//getProjects
-routerP.patch('/:id',updateProject)//updateProject
+routerP.put('/:id',updateProject)//updateProject
 routerP.delete('/:id',deleteProject)//deleteProject
 
 export default routerP;

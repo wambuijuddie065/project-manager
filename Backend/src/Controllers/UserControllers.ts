@@ -1,4 +1,4 @@
-import { Request, Response } from "express";
+import { Request, RequestHandler, Response } from "express";
 import mssql from "mssql";
 import { v4 as uid } from "uuid";
 import { sqlConfig } from "../Config/Config";
@@ -34,7 +34,7 @@ export const registerUser = async (req: ExtendedRequest, res: Response) => {
     const hashedPassword = await bcrypt.hash(password, 10);
     await pool
       .request()
-      .input("id", mssql.VarChar, id)
+      .input("user_id", mssql.VarChar, id)
       .input("name", mssql.VarChar, name)
       .input("email", mssql.VarChar, email)
       .input("password", mssql.VarChar, hashedPassword)
@@ -96,3 +96,76 @@ export const checkUser= async (req:Extended, res:Response)=>{
     res.json({name:req.info.name, role:req.info.role})
   }
 }
+export const getUsers: RequestHandler= async (req, res) => {
+  try {
+    const pool = await mssql.connect(sqlConfig);
+    const users = await pool.request().execute("getUsers");
+    res.json(users.recordset);
+  } catch (error: any) {
+    res.json({ Error });
+  }
+};
+
+export const getUserById: RequestHandler<{id: string }> = async (req, res) => {
+  try {
+    const id = req.params.id
+    const pool = await mssql.connect(sqlConfig);
+    const users = await pool
+      .request()
+      .input("user_id", mssql.VarChar, id)
+      .execute("getUserById");
+    const { recordset } = users;
+
+    if (!users.recordset[0]) {
+      res.json({ message: "User Not Found" });
+    } else {
+      res.json(recordset);
+     
+    }
+    
+  } catch (error: any) {
+    res.json({ error });
+  }
+};
+
+export const updateUser: RequestHandler<{ id: string }> = async (req,res ) => {
+  try {
+    const id = req.params.id;
+    const { user_id,name,email,password,role,isassigned,project_id,issent} = req.body as {
+      user_id:string
+      name:string
+      email:string
+      password:string
+      role:string
+      isassigned:string
+      project_id:string
+      issent:boolean
+
+    };
+    const pool = await mssql.connect(sqlConfig);
+    const users = await pool
+      .request()
+      .input("user_id", mssql.VarChar, id)
+      .execute("getUserById");
+
+    const { recordset } = users;
+    if (!users.recordset[0]) {
+      res.json({ message: "User Not Found!" });
+    } else {
+      await pool.request()
+      .input("user_id", mssql.VarChar, id)
+      .input("name", mssql.VarChar,name)
+      .input("email", mssql.VarChar, email)
+      .input("password", mssql.VarChar,password)
+      .input("role", mssql.VarChar,role )
+      .input("isassigned", mssql.VarChar, isassigned)
+      .input("project_id", mssql.VarChar, project_id)
+      .execute("updateUser");
+      res.json({
+        message: "User updated successfully!",
+      });
+    }
+  } catch (error: any) {
+    res.json({ error });
+  }
+};

@@ -66,7 +66,7 @@ closeFormBtn.addEventListener('click',()=>{
             }).then(res=>{resolve(res.json())}).catch(err=>(reject(err)))
         })
         prom.then((data)=>{
-            // console.log(data);
+            
             data.message? message.textContent=data.message:''
             data.error? message.textContent=data.error:''
             setTimeout(()=>{  
@@ -89,9 +89,9 @@ closeFormBtn.addEventListener('click',()=>{
 
         })
         prom.then((data)=>{
-        // console.log(data);
+       
         projectContainer.innerHTML=''
- data.map((item) =>{
+        data.map((item) =>{
             let html= `
             <div class="aProject">
             <div class="title">${item.project_name}</div>

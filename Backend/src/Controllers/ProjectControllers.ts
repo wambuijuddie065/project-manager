@@ -62,12 +62,14 @@ export const getProject: RequestHandler<{id: string }> = async (req, res) => {
   export const updateProject: RequestHandler<{ id: string }> = async (req,res ) => {
     try {
       const id = req.params.id;
-      const { project_name,project_description,due_date,is_complete,isassigned } = req.body as {
+      const { project_name,project_description,due_date,is_complete,isassigned ,user_id} = req.body as {
         project_name:string
         project_description:string
         due_date:string
         is_complete:string
         isassigned:string
+        user_id:string
+
       };
       const pool = await mssql.connect(sqlConfig);
       const projects = await pool
@@ -86,6 +88,7 @@ export const getProject: RequestHandler<{id: string }> = async (req, res) => {
         .input("due_date", mssql.VarChar, due_date)
         .input("is_complete", mssql.VarChar, is_complete)
         .input("isassigned", mssql.VarChar, isassigned)
+        .input("user_id", mssql.VarChar, user_id)
         .execute("updateProject");
         res.json({
           message: "Project updated successfully!",

@@ -4,8 +4,8 @@ Content-Type: application/json
 
 
 {
-    "name":"sia",
-    "email":"sia@gmail.com",
+    "name":"mimi",
+    "email":"mimi@gmail.com",
     "password":"12345678"
 }
 
@@ -17,7 +17,7 @@ Content-Type: application/json
 
 {
     
-    "email":"judy@gmail.com",
+    "email":"mimi@gmail.com",
     "password":"12345678"
 }
 
@@ -34,6 +34,8 @@ token:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjBhNWMyMzQ5LTViY2MtNGEyZC04Y
 
 ###
 
+
+
 POST http://localhost:5000/projects/add
 Content-Type: application/json
 
@@ -47,6 +49,8 @@ Content-Type: application/json
 ###
 
 
+
+
 GET http://localhost:5000/projects
 
 ###
@@ -54,18 +58,29 @@ GET http://localhost:5000/projects
 GET http://localhost:5000/projects/9f9d811e-dd92-4c5b-a93f-b8ca6bfa3786
 ###
 
-PATCH http://localhost:5000/localhost:5000/projects/9f9d811e-dd92-4c5b-a93f-b8ca6bfa3786
+PUT http://localhost:5000/projects/f06debca-ffee-472b-b56f-3cef99ec5313
 Content-Type: application/json
 
 {
+    
     "project_name":"sql2",
     "project_description":"updated sql",
     "due_date":"2022-08-21",
     "is_complete":"1",
-    "is_assigned":"1"
+    "isassigned":"1",
+    "user_id":"1"
+
 }
 
 ###
 
 DELETE http://localhost:5000/projects/9f9d811e-dd92-4c5b-a93f-b8ca6bfa3786
+
+###
+
+GET http://localhost:5000/users
+
+###
+GET http://localhost:5000/users/cdd76976-e496-4b89-9666-8d7313b3163e
+
 
