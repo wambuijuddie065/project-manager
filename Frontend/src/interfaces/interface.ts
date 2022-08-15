@@ -19,3 +19,14 @@ export interface Project{
         is_complete:string
         isassigned:string
 }
+
+export interface User{
+        user_id:number;
+        name:string;
+        email:string;
+        password:string;
+        role: string;
+        isassigned: string;
+        project_id:string;
+        issent: string;
+}

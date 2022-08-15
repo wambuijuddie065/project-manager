@@ -1,4 +1,4 @@
-import { projectInterface } from "./interfaces/interface"
+
 import { Project } from "./interfaces/interface"
 
 const projectForm=document.getElementById('projectForm') as HTMLFormElement
@@ -12,6 +12,7 @@ const projectDueDate=document.getElementById('projectDueDate') as HTMLInputEleme
 const projectContainer=document.querySelector('.projectContainer') as HTMLDivElement
 const profileName=document.getElementById('profileName') as HTMLParagraphElement
 const message= document.querySelector('.message') as HTMLParagraphElement
+
 
 
 
@@ -48,6 +49,7 @@ closeFormBtn.addEventListener('click',()=>{
     }
     constructor(){
       this.displayProject()
+      
     }
     addProject(project_name:string,project_description:string,due_date:String){
         const prom=new Promise<{error?:string,message?:string}>((resolve,reject)=>{
@@ -92,20 +94,56 @@ closeFormBtn.addEventListener('click',()=>{
        
         projectContainer.innerHTML=''
         data.map((item) =>{
-            let html= `
-            <div class="aProject">
-            <div class="title">${item.project_name}</div>
-            <div class="desc">${item.project_description}</div>
-            <div class="due">${item.due_date}</div>
+
+
+            const aProject=document.createElement('div')
+            aProject.classList.add('aProject')
+            const title=document.createElement('p')
+            title.classList.add('title') 
+            const desc=document.createElement('p')
+            desc.classList.add('desc')
+            const due=document.createElement('p')
+            due.classList.add('due')
+            const deleteProject=document.createElement('button')
+            deleteProject.classList.add('deleteProject')
+            let assignProject=document.createElement('button')
+            assignProject.classList.add('assignProject')
+
+            title.textContent=`${item.project_name}`
+            desc.textContent=`${item.project_description}`
+            due.textContent=`${item.due_date}`
+            deleteProject.textContent='DELETE'
+            assignProject.textContent='ASSIGN'
             
-            <button id="deleteProject">DELETE</button>
-            <button id="assignProject">ASSIGN</button>
+
+            aProject.appendChild(title);
+            aProject.appendChild(desc);
+            aProject.appendChild(due);
+            aProject.appendChild(deleteProject)
+            aProject.appendChild(assignProject);
+
+
+            projectContainer.appendChild(aProject);
+            
+              
+                assignProject.addEventListener('click', (e) =>{
+
+                    location.href='allUsers.html'
+                    console.log('Hello');
+                    
+
+                })
+                    
+                    
+                    
+                    
+                    
+                    
+                
 
             
-             </div>
-            `
-
-            projectContainer.insertAdjacentHTML('beforeend', html)
+           
+        
 
         
             })
@@ -113,6 +151,8 @@ closeFormBtn.addEventListener('click',()=>{
 
         })
     }
+
+    
 }
 
 
@@ -140,5 +180,6 @@ addProjectBtn.addEventListener('click',(e)=>{
  
    
 })
+
 
 
