@@ -27,27 +27,7 @@ header{
     padding: 10px 30px;
     
 }
-.search{
-    display: flex;
-    align-items: center;
-    
-    height: 30px;
-    width: 300px;
-    color: grey;
-    padding: 5px;
-    
-}
-.searchIcon{
-    font-size: 25px;
 
-}
-#searchInput{
-    outline: none;
-    border: none;
-    height: 30px;
-    margin-left: 10px;
-    font-size: 15px;
-}
 .profile{
     display: flex;
     align-items: center;

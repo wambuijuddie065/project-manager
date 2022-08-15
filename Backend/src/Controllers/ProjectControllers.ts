@@ -2,12 +2,18 @@ import { Request, RequestHandler, Response } from "express";
 import mssql from "mssql";
 import { v4 as uid } from "uuid"; 
 import { sqlConfig } from "../Config/Config";
+import { ProjectSchema1 } from "../Helpers/ProjectValidator";
 
 interface ExtendedRequest extends Request{
     body:{
+      project_id:string
         project_name:string
         project_description:string
-        due_date:Date
+        due_date:string
+        is_complete:string
+        isassigned:string
+        user_id:string
+
     }
 }
 
@@ -132,3 +138,31 @@ export const deleteProject:RequestHandler<{id:string}>=async (req,res)=>{
         
     }
  }
+
+
+ export const assignNewProject=async (req:ExtendedRequest,res: Response)=>{
+  try {
+      
+      const pool=await mssql.connect(sqlConfig);
+      const {project_name,user_id}= req.body
+      const {error,value}=ProjectSchema1.validate(req.body)
+      if (error) {
+        return res.json({error:error.details[0].message})
+      }else{
+        await pool.request()
+        .input("p_name",mssql.VarChar,project_name)
+        .input("u_id", mssql.VarChar, user_id)
+        .execute("assignProject")
+        res.json({message:'project assigned'})
+      }
+    
+     
+    
+  } catch (error:any) {
+      res.json({ error });
+      
+  }
+}
+
+
+

@@ -4,8 +4,8 @@ Content-Type: application/json
 
 
 {
-    "name":"mimi",
-    "email":"mimi@gmail.com",
+    "name":"Joy",
+    "email":"judywambui620@gmail.com",
     "password":"12345678"
 }
 
@@ -17,7 +17,7 @@ Content-Type: application/json
 
 {
     
-    "email":"mimi@gmail.com",
+    "email":"judywambui620@gmail.com",
     "password":"12345678"
 }
 
@@ -41,8 +41,8 @@ Content-Type: application/json
 
 
 {
-    "project_name":"CSS",
-    "project_description":"Flexbox CSS",
+    "project_name":"SQL",
+    "project_description":"JOINS",
     "due_date":"2022-08-21"
 }
 
@@ -84,3 +84,11 @@ GET http://localhost:5000/users
 GET http://localhost:5000/users/cdd76976-e496-4b89-9666-8d7313b3163e
 
 
+###
+POST  http://localhost:5000/projects/assignProject
+Content-Type: application/json
+
+{
+    "project_name":"SQL",
+    "user_id":"a87d3383-25fa-43f9-8200-646b3ac0ea68"
+}

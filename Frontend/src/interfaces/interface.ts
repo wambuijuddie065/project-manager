@@ -18,6 +18,7 @@ export interface Project{
         due_date:string
         is_complete:string
         isassigned:string
+        user_id:string
 }
 
 export interface User{
