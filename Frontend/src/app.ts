@@ -38,7 +38,7 @@ class Users{
     }
     constructor(){}
     loginUser(email:string,password:string){
-        const prom=new Promise<{error?:string,token?:string,message?:string}>((resolve,reject)=>{
+        const prom=new Promise<{error?:string,token?:string,success:boolean,message?:string}>((resolve,reject)=>{
             // console.log('email received',email);
             
             fetch('http://localhost:5000/users/login',{
@@ -58,8 +58,12 @@ class Users{
         prom.then(data=>{
             data.token?localStorage.setItem('token',data.token):''
             console.log(data);
-            this.redirect()
+            console.log('Hello');
+            if(data.success){
+                this.redirect()
+            }
             
+            this.redirect()
         }).catch(err=>console.log(err))
 
     }
@@ -82,7 +86,7 @@ class Users{
 
     redirect(){
         const token=localStorage.getItem('token') as string;
-        new Promise<{name:string,role:string}>((resolve,reject)=>{
+        new Promise<{name:string,role:string,email:string,user_id:string}>((resolve,reject)=>{
             fetch('http://localhost:5000/users/check',{
                 headers:{
                     'Accept':'Application/json',
@@ -96,12 +100,21 @@ class Users{
 
         }).then(data=>{
             console.log(data);
+            
+          
+            
             localStorage.setItem('name',data.name)
+            localStorage.setItem('email',data.email)
+            localStorage.setItem('user_id',data.user_id)
+
             if(data.role==='Admin'){
                 location.href='AdminDashboard.html'
                 
+              
+                 
             }else{
-                   location.href='UserDashboard.html'
+                location.href='UserDashboard.html'     
+
             }
         }
         )
@@ -144,5 +157,7 @@ registerBtn.addEventListener('click',(e)=>{
     }else{
         Users.getUser().registerUser(nameInput,emailInput,passwordInput)
     }
+    displayLogin();
 
 })
+

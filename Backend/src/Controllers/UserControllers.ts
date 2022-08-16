@@ -48,7 +48,7 @@ export const registerUser = async (req: ExtendedRequest, res: Response) => {
 
 export const loginUser = async (req: ExtendedRequest, res: Response) => {
   try {
-    const { email, password } = req.body;
+    const { name,email, password } = req.body;
     const pool = await mssql.connect(sqlConfig);
 
     const { error, value } = UserSchemaLog.validate(req.body);
@@ -62,22 +62,28 @@ export const loginUser = async (req: ExtendedRequest, res: Response) => {
         .input("email", mssql.VarChar, email)
         .execute("getUser")
     ).recordset
-
+     
     if (!user[0]) {
-      res.json({ message: "User Not Found" });
+      return res.json({ message: "User Not Found",success:false });
     }else{ 
         const validPassword = await bcrypt.compare(password, user[0].password);
         if (!validPassword) {
-           res.json({ message: 'Invalid Password!' });
+          return  res.json({ message: 'Invalid Password!', success:false });
         }
+        
+      
+        
         const payload = user.map((item) => {
           const { password, ...rest } = item;
           return rest;
         });
+       
+
         const token = jwt.sign(payload[0], process.env.KEY as string, {
           expiresIn: "3600s",
         });
-        res.json({ message: "User logged in Successfully!",token });}
+        return res.json({ message: "User logged in Successfully!",token,success:true })
+      }
  
    
   } catch (error) {
@@ -93,7 +99,7 @@ export const getHomepage=async (req:Extended,res:Response)=>{
 }
 export const checkUser= async (req:Extended, res:Response)=>{
   if(req.info){
-    res.json({name:req.info.name, role:req.info.role})
+    res.json({user_id:req.info.user_id,name:req.info.name, role:req.info.role,email:req.info.email})
   }
 }
 export const getUsers: RequestHandler= async (req, res) => {

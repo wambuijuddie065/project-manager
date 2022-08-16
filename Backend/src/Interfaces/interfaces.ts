@@ -8,7 +8,7 @@ export interface User{
 
 
 export interface Data{
-    id:string
+    user_id:string
     email:string
     name:string
     role:string

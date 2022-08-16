@@ -1,5 +1,5 @@
 
-import { Project } from "./interfaces/interface"
+import { Project, User } from "./interfaces/interface"
 
 const projectForm=document.getElementById('projectForm') as HTMLFormElement
 const logoutBtn=document.getElementById('logoutBtn') as HTMLButtonElement
@@ -12,8 +12,7 @@ const projectDueDate=document.getElementById('projectDueDate') as HTMLInputEleme
 const projectContainer=document.querySelector('.projectContainer') as HTMLDivElement
 const profileName=document.getElementById('profileName') as HTMLParagraphElement
 const message= document.querySelector('.message') as HTMLParagraphElement
-
-
+const selector = document.getElementById('selector') as HTMLSelectElement
 
 
  const names=localStorage.getItem('name')
@@ -49,9 +48,10 @@ closeFormBtn.addEventListener('click',()=>{
     }
     constructor(){
       this.displayProject()
+      this.displayUsers()
       
     }
-    addProject(project_name:string,project_description:string,due_date:String){
+    addProject(project_name:string,project_description:string,due_date:String,email:string){
         const prom=new Promise<{error?:string,message?:string}>((resolve,reject)=>{
             fetch('http://localhost:5000/projects/add',{
                 headers:{
@@ -62,7 +62,8 @@ closeFormBtn.addEventListener('click',()=>{
                 body:JSON.stringify({
                     "project_name":project_name,
                     "project_description":project_description,
-                    "due_date":due_date
+                    "due_date":due_date,
+                    "email":email
 
                 })
             }).then(res=>{resolve(res.json())}).catch(err=>(reject(err)))
@@ -104,52 +105,82 @@ closeFormBtn.addEventListener('click',()=>{
             desc.classList.add('desc')
             const due=document.createElement('p')
             due.classList.add('due')
+            const assignedUser=document.createElement('p')
+            assignedUser.classList.add('assignedUser')
             const deleteProject=document.createElement('button')
             deleteProject.classList.add('deleteProject')
-            let assignProject=document.createElement('button')
-            assignProject.classList.add('assignProject')
+            
 
             title.textContent=`${item.project_name}`
             desc.textContent=`${item.project_description}`
             due.textContent=`${item.due_date}`
             deleteProject.textContent='DELETE'
-            assignProject.textContent='ASSIGN'
+            assignedUser.textContent=`${item.user_id}`
+            // assignProject.textContent='ASSIGN'
             
 
             aProject.appendChild(title);
             aProject.appendChild(desc);
             aProject.appendChild(due);
+            aProject.appendChild(assignedUser);
             aProject.appendChild(deleteProject)
-            aProject.appendChild(assignProject);
+            // aProject.appendChild(assignProject);
 
 
             projectContainer.appendChild(aProject);
-            
-              
-                assignProject.addEventListener('click', (e) =>{
+            deleteProject.addEventListener('click',()=>{                
+                this.deleteProject(item.project_id);
+            })
 
-                    location.href='allUsers.html'
-                    console.log('Hello');
-                    
-
-                })
-                    
-                    
-                    
-                    
-                    
-                    
-                
-
-            
-           
-        
-
-        
             })
               
 
         })
+    }
+    displayUsers(){
+        const prom=new Promise<User[]>((resolve, reject) => {
+            fetch('http://localhost:5000/users',{
+                method:'GET',
+
+
+            }).then(res=>{resolve(res.json())}).catch(err=>(reject(err)))
+
+        })
+        prom.then((data)=>{
+            const selectUsers=document.getElementById('selectUsers') as HTMLDivElement
+            
+            // usersContainer.innerHTML=''
+            selector.innerHTML=''
+
+            data.map((user)=>{
+
+                let html= `
+               <option value=${user.email}>
+                ${user.email}
+                </option>
+                `
+
+                
+                selector.insertAdjacentHTML('beforeend', html)
+                
+            })
+
+        })
+    }
+    deleteProject(id:string){
+        
+        const prom=new Promise((resolve, reject)=>{
+            fetch('http://localhost:5000/projects/'+id,{
+                method: 'DELETE',
+            }).then(res=>{resolve(res.json())}).catch(err=>(reject(err)))
+
+        })
+        prom.then((data)=>{
+            console.log(data);
+            this.displayProject()
+            
+        })
+
     }
 
     
@@ -164,6 +195,7 @@ addProjectBtn.addEventListener('click',(e)=>{
         const title=projectTitle.value
          const description=projectDescription.value 
         const dueDate=projectDueDate.value
+        const email=selector.value
 
         console.log(title, description, dueDate);
         
@@ -173,12 +205,15 @@ addProjectBtn.addEventListener('click',(e)=>{
             
             
         } else {
-          Projects.getProject().addProject(title, description, dueDate)  
+          Projects.getProject().addProject(title, description, dueDate,email)  
         }
 
 
  
    
+})
+logoutBtn.addEventListener('click', ()=>{ 
+    location.href = 'index.html';
 })
 
 

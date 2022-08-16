@@ -19,6 +19,7 @@ export interface Project{
         is_complete:string
         isassigned:string
         user_id:string
+        email:string
 }
 
 export interface User{

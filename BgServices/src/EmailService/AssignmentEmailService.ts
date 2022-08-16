@@ -20,8 +20,9 @@ interface Task {
 
 const SendAssignedEmails = async () => {
   const pool = await mssql.connect(sqlConfig);
-  const tasks: Task[] = await(await pool.request()
-  .query(`SELECT U.user_id, U.email ,P.project_description,P.project_name FROM UsersTable U LEFT JOIN ProjectsTable P ON U.user_id = P.user_id 
+  const tasks: Task[] = (await pool.request()
+  .query(`SELECT U.user_id, U.email ,P.project_description,P.project_name FROM
+   UsersTable U LEFT JOIN ProjectsTable P ON U.user_id = P.user_id 
   WHERE P.user_id IS NOT NULL AND P.isassigned='0'`)).recordset;
 
 for(let atask of tasks){
@@ -34,7 +35,7 @@ for(let atask of tasks){
             attachments:[
                 {
                     filename:'task.txt',
-                    content:`You have been assigned a task  : ${atask.project_description}`
+                    content:`You have been assigned a task  : ${atask.project_name}`
                 }
             ]
         }

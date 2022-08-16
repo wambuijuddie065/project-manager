@@ -13,6 +13,7 @@ interface ExtendedRequest extends Request{
         is_complete:string
         isassigned:string
         user_id:string
+        email:string
 
     }
 }
@@ -23,13 +24,14 @@ export const insertProject=async(req:ExtendedRequest,res:Response)=>{
     try {
         const pool=await mssql.connect(sqlConfig)
         const id=uid()
-        const {project_name,project_description,due_date}=req.body
+        const {project_name,project_description,due_date,email}=req.body
         await pool
         .request()
         .input("project_id", mssql.VarChar, id)
         .input("project_name", mssql.VarChar, project_name)
         .input("project_description", mssql.VarChar, project_description)
         .input("due_date", mssql.VarChar, due_date)
+        .input("email",mssql.VarChar, email)
         .execute("insertProject");
   
       res.json({ message: "Project Added Successfully" });
@@ -50,6 +52,27 @@ export const getProject: RequestHandler<{id: string }> = async (req, res) => {
         .request()
         .input("project_id", mssql.VarChar, id)
         .execute("getProject");
+      const { recordset } = projects;
+  
+      if (!projects.recordset[0]) {
+        res.json({ message: "Project Not Found" });
+      } else {
+        res.json(recordset);
+       
+      }
+      
+    } catch (error: any) {
+      res.json({ error });
+    }
+  };
+
+
+  export const getUserProject: RequestHandler<{id: string }> = async (req, res) => {
+    try {
+      const id = req.params.id
+      const pool = await mssql.connect(sqlConfig);
+      const projects = await pool
+        .query(`SELECT * FROM ProjectsTable WHERE user_id='${id}'`)
       const { recordset } = projects;
   
       if (!projects.recordset[0]) {

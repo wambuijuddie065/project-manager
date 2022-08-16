@@ -4,8 +4,8 @@ Content-Type: application/json
 
 
 {
-    "name":"Joy",
-    "email":"judywambui620@gmail.com",
+    "name":"Jj",
+    "email":"jj@gmail.com",
     "password":"12345678"
 }
 
@@ -17,20 +17,15 @@ Content-Type: application/json
 
 {
     
-    "email":"judywambui620@gmail.com",
+    "email":"user1@gmail.com",
     "password":"12345678"
 }
 
 
 ###
 
-GET http://localhost:5000/users/dashboard
-token:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImNkZDc2OTc2LWU0OTYtNGI4OS05NjY2LThkNzMxM2IzMTYzZSIsIm5hbWUiOiJzaWEiLCJlbWFpbCI6InNpYUBnbWFpbC5jb20iLCJyb2xlIjoiVXNlciIsImlzYXNzaWduZWQiOiIwIiwicHJvamVjdF9pZCI6IjAiLCJpYXQiOjE2NjAxMzgwODgsImV4cCI6MTY2MDEzODE0OH0.eTVCHHmQd8rL0ykJclQ85hWv1qYkbZa3ehjDKhguIgI
-
-
-###
 GET http://localhost:5000/users/check
-token:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjBhNWMyMzQ5LTViY2MtNGEyZC04YjViLWRkNThmMWZmYTE2ZSIsIm5hbWUiOiJKdWR5IFdhbWJ1aSIsImVtYWlsIjoianVkeUBnbWFpbC5jb20iLCJyb2xlIjoiQWRtaW4iLCJpc2Fzc2lnbmVkIjoiMCIsInByb2plY3RfaWQiOiIwIiwiaWF0IjoxNjYwMTM4NDYyLCJleHAiOjE2NjAxNDIwNjJ9.4DSWVZVF9mi1zFd8YM6ybS6gAbNLTGcI-IViOB91U0A
+token:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiMzlkODBlYTQtODA4MS00MjRkLWFmMzItOTY1MjdmZjhlMDk0IiwibmFtZSI6InVzZXIxIiwiZW1haWwiOiJ1c2VyMUBnbWFpbC5jb20iLCJyb2xlIjoiVXNlciIsImlzYXNzaWduZWQiOiIxIiwicHJvamVjdF9pZCI6IjAiLCJpc3NlbnQiOiIwIiwiaWF0IjoxNjYwNjQzNDYzLCJleHAiOjE2NjA2NDcwNjN9.N1_5YIPNfIzjeYKqflAf4BaQv_6cmZ1spw7AplNfX_M
 
 ###
 
@@ -43,7 +38,8 @@ Content-Type: application/json
 {
     "project_name":"SQL",
     "project_description":"JOINS",
-    "due_date":"2022-08-21"
+    "due_date":"2022-08-21",
+    "email":"user1@gmail.com"
 }
 
 ###
@@ -74,7 +70,7 @@ Content-Type: application/json
 
 ###
 
-DELETE http://localhost:5000/projects/9f9d811e-dd92-4c5b-a93f-b8ca6bfa3786
+DELETE http://localhost:5000/projects/70e052fe-3f91-4648-a606-9127a7b9117d
 
 ###
 
