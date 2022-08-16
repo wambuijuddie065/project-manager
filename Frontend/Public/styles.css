@@ -35,7 +35,7 @@ body{
 }
 .rightContainer{
    background-color: white;
-   padding: 30px;
+   padding: 20px;
    overflow: hidden;
   
     
@@ -96,7 +96,7 @@ body{
 }
 .newMember, .member{
     text-align: center;
-    margin-top: 50px;
+    margin-top: 40px;
     
 }
 .newMember a, .member a{

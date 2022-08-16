@@ -7,11 +7,12 @@ import { sqlConfig } from "../Config/Config";
 import { log } from "console";
 dotenv.config();
 interface Task {
+  name:string
   email: string
 //   project_id:string
   project_name:string
   project_description:string
-//   due_date:string
+  due_date:string
 //   is_complete:string
 //   isassigned:string
   user_id:string
@@ -21,12 +22,14 @@ interface Task {
 const SendAssignedEmails = async () => {
   const pool = await mssql.connect(sqlConfig);
   const tasks: Task[] = (await pool.request()
-  .query(`SELECT U.user_id, U.email ,P.project_description,P.project_name FROM
-   UsersTable U LEFT JOIN ProjectsTable P ON U.user_id = P.user_id 
-  WHERE P.user_id IS NOT NULL AND P.isassigned='0'`)).recordset;
+  .query(`SELECT U.user_id, U.email,U.name ,P.project_description,P.project_name,P.due_date FROM
+  UsersTable U LEFT JOIN ProjectsTable P ON U.user_id = P.user_id 
+ WHERE P.user_id IS NOT NULL AND P.isassigned='0'`)).recordset;
 
 for(let atask of tasks){
-    ejs.renderFile('Templates/Assigned.ejs',{project_name:atask.project_name,task:atask.project_description},async(error,data)=>{
+    ejs.renderFile('Templates/Assigned.ejs',{name:atask.name,project_name:atask.project_name,project_description:atask.project_description,
+      due_date:atask.due_date
+    },async(error,data)=>{
         let mailOptions={
             from:process.env.EMAIL,
             to:atask.email,

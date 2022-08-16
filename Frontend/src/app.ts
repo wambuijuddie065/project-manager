@@ -56,14 +56,17 @@ class Users{
 
         })
         prom.then(data=>{
-            data.token?localStorage.setItem('token',data.token):''
             console.log(data);
-            console.log('Hello');
+            if(data.message!=='Invalid Password!'){
+            data.token?localStorage.setItem('token',data.token):''
+            
+           
             if(data.success){
                 this.redirect()
             }
             
             this.redirect()
+        }
         }).catch(err=>console.log(err))
 
     }

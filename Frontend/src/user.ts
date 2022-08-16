@@ -6,6 +6,7 @@ let myProjectsContainer=document.getElementById('myProjectsContainer') as HTMLDi
 const projectCount=document.getElementById('projectCount') as HTMLParagraphElement
 
  const namesUser=localStorage.getItem('name')
+ 
 
  if(namesUser){
    profName.textContent=` Bonjour ${namesUser}`
@@ -67,10 +68,10 @@ class myProjects{
       completeProject.classList.add('completeProject')
       
 
-      title.textContent=`${item.project_id}`
+      title.textContent=`${item.project_name}`
       desc.textContent=`${item.project_description}`
-      due.textContent=`${item.due_date}`
-      completeProject.textContent='COMPLETED'
+      due.textContent=`DUE AT: ${item.due_date}`
+      completeProject.textContent='COMPLETE'
       
       
       
@@ -83,6 +84,9 @@ class myProjects{
 
 
       myProjectsContainer.appendChild(aProject);
+      completeProject.addEventListener('click',()=>{
+
+      })
     
 
       })
@@ -91,5 +95,8 @@ class myProjects{
   })
 }
 
+
+  
 }
+
 

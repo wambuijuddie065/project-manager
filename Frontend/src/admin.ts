@@ -1,6 +1,7 @@
 
 import { Project, User } from "./interfaces/interface"
 
+
 const projectForm=document.getElementById('projectForm') as HTMLFormElement
 const logoutBtn=document.getElementById('logoutBtn') as HTMLButtonElement
 const newProjectBtn=document.getElementById('newProjectBtn') as HTMLButtonElement
@@ -113,9 +114,9 @@ closeFormBtn.addEventListener('click',()=>{
 
             title.textContent=`${item.project_name}`
             desc.textContent=`${item.project_description}`
-            due.textContent=`${item.due_date}`
+            due.textContent=` DUE AT:${item.due_date}`
             deleteProject.textContent='DELETE'
-            assignedUser.textContent=`${item.user_id}`
+            assignedUser.textContent='ASSIGNED'
             // assignProject.textContent='ASSIGN'
             
 
@@ -197,7 +198,7 @@ addProjectBtn.addEventListener('click',(e)=>{
         const dueDate=projectDueDate.value
         const email=selector.value
 
-        console.log(title, description, dueDate);
+       
         
 
         if (title==''||description==''||dueDate=='') {
