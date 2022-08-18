@@ -85,14 +85,20 @@ closeFormBtn.addEventListener('click',()=>{
 
     }
     displayProject(){
+        const token=localStorage.getItem('token') as string;
         const prom=new Promise<Project[]>((resolve,reject)=>{
             fetch('http://localhost:5000/projects',{
+                headers:{
+                    token
+                },
                 method:'GET',
+
 
             }).then(res=>{resolve(res.json())}).catch(err=>(reject(err)))
 
         })
         prom.then((data)=>{
+       console.log(data);
        
         projectContainer.innerHTML=''
         data.map((item) =>{
